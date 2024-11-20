@@ -91,18 +91,22 @@ PATCH /tasks/
 /complete: Mark a task as completed.
 
 Testing with Postman
-Set up an environment in Postman:
 
-Variable: baseUrl
-Value: http://localhost:5000/api
-Authentication:
+1) Set up an environment in Postman:
 
-Register a user with POST {{baseUrl}}/auth/register.
-Log in with POST {{baseUrl}}/auth/login to get a token.
-Authorization:
+  Variable: baseUrl
+  Value: http://localhost:5000/api
 
-Copy the token from the login response.
-Add it to the Authorization header as Bearer <your_token> for subsequent requests.
-CRUD Operations on Tasks:
+2) Authentication:
 
-Use the token to perform tasks operations.
+   Register a user with POST {{baseUrl}}/auth/register.
+   Log in with POST {{baseUrl}}/auth/login to get a token.
+
+3) Authorization:
+
+   Copy the token from the login response.
+   Add it to the Authorization header as Bearer <your_token> for subsequent requests.
+
+4) CRUD Operations on Tasks:
+
+    Use the token to perform tasks operations.

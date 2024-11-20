@@ -2,6 +2,8 @@ Task Management API
 A RESTful API for managing tasks, allowing users to perform CRUD operations and mark tasks as complete. The API also includes user authentication for secure access.
 
 Features
+
+
 User Authentication: Register and log in with secure password hashing.
 Task Management: Create, read, update, and delete tasks.
 Task Completion: Mark tasks as completed.
@@ -20,7 +22,13 @@ Node.js (version 14 or above)
 MongoDB (running locally or hosted, e.g., MongoDB Atlas)
 Postman (or any API testing tool)
 Steps
+
+
+
 Clone the repository:
+
+
+
 
 bash
 Copy code
@@ -28,10 +36,16 @@ git clone <repository_url>
 cd task-management-api
 Install dependencies:
 
+
+
+
 bash
 Copy code
 npm install
 Create a .env file in the root directory and add the following:
+
+
+
 
 env
 Copy code
@@ -41,15 +55,33 @@ JWT_SECRET=your_jwt_secret_key
 Start the server:
 
 bash
+
 Copy code
+
+
 npm start
 The API will be available at http://localhost:5000/api.
 
+
+
 API Endpoints
+
+
+
+
+
 Authentication
+
+
 POST /auth/register: Register a new user.
 
+
+
+
 Request body:
+
+
+
 
 json
 Copy code
@@ -57,9 +89,19 @@ Copy code
   "username": "string",
   "password": "string"
 }
+
+
+
+
 POST /auth/login: Log in a user.
 
+
+
+
 Request body:
+
+
+
 
 json
 Copy code
@@ -67,14 +109,30 @@ Copy code
   "username": "string",
   "password": "string"
 }
+
+
+
 Tasks
+
+
+
 GET /tasks: Retrieve all tasks (authenticated).
+
+
+
+
 
 GET /tasks/{id}: Retrieve a specific task by ID.
 
+
+
 POST /tasks: Create a new task.
 
+
 Request body:
+
+
+
 
 json
 Copy code
@@ -83,33 +141,61 @@ Copy code
   "description": "string",
   "due_date": "YYYY-MM-DD"
 }
+
+
+
+
 PUT /tasks/{id}: Update an existing task.
 
+
 Request body:
+
+
 
 json
 Copy code
+
+
+
+
 {
   "title": "string",
   "description": "string",
   "due_date": "YYYY-MM-DD"
 }
+
+
+
+
 DELETE /tasks/{id}: Delete a task.
 
+
+
+
 PATCH /tasks/{id}/complete: Mark a task as completed.
+
+
+
 
 Testing with Postman
 Set up an environment in Postman:
 Variable: baseUrl
 Value: http://localhost:5000/api
+
+
 Authentication:
 Register a user with POST {{baseUrl}}/auth/register.
 Log in with POST {{baseUrl}}/auth/login to get a token.
+
+
 Authorization:
 Copy the token from the login response.
 Add it to the Authorization header as:
 php
 Copy code
 Bearer <your_token>
+
+
+
 CRUD Operations on Tasks:
 Use the token to perform task operations (GET, POST, PUT, DELETE) by adding it to the Authorization header for each request.

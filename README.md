@@ -24,25 +24,25 @@ Clone the repository:
 
 bash
 Copy code
-git clone <repository_url>  
-cd task-management-api  
+git clone <repository_url>
+cd task-management-api
 Install dependencies:
 
 bash
 Copy code
-npm install  
+npm install
 Create a .env file in the root directory and add the following:
 
 env
 Copy code
-PORT=5000  
-MONGO_URI=mongodb://localhost:27017/task_manager  
-JWT_SECRET=your_jwt_secret_key  
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/task_manager
+JWT_SECRET=your_jwt_secret_key
 Start the server:
 
 bash
 Copy code
-npm start  
+npm start
 The API will be available at http://localhost:5000/api.
 
 API Endpoints
@@ -50,63 +50,66 @@ Authentication
 POST /auth/register: Register a new user.
 
 Request body:
+
 json
 Copy code
-{  
-  "username": "string",  
-  "password": "string"  
-}  
+{
+  "username": "string",
+  "password": "string"
+}
 POST /auth/login: Log in a user.
 
 Request body:
+
 json
 Copy code
-{  
-  "username": "string",  
-  "password": "string"  
-}  
+{
+  "username": "string",
+  "password": "string"
+}
 Tasks
 GET /tasks: Retrieve all tasks (authenticated).
 
-GET /tasks/
-: Retrieve a specific task by ID.
+GET /tasks/{id}: Retrieve a specific task by ID.
 
 POST /tasks: Create a new task.
 
 Request body:
+
 json
 Copy code
-{  
-  "title": "string",  
-  "description": "string",  
-  "due_date": "YYYY-MM-DD"  
-}  
-PUT /tasks/
-: Update an existing task.
+{
+  "title": "string",
+  "description": "string",
+  "due_date": "YYYY-MM-DD"
+}
+PUT /tasks/{id}: Update an existing task.
 
-DELETE /tasks/
-: Delete a task.
+Request body:
 
-PATCH /tasks/
-/complete: Mark a task as completed.
+json
+Copy code
+{
+  "title": "string",
+  "description": "string",
+  "due_date": "YYYY-MM-DD"
+}
+DELETE /tasks/{id}: Delete a task.
+
+PATCH /tasks/{id}/complete: Mark a task as completed.
 
 Testing with Postman
-
-1) Set up an environment in Postman:
-
-  Variable: baseUrl
-  Value: http://localhost:5000/api
-
-2) Authentication:
-
-   Register a user with POST {{baseUrl}}/auth/register.
-   Log in with POST {{baseUrl}}/auth/login to get a token.
-
-3) Authorization:
-
-   Copy the token from the login response.
-   Add it to the Authorization header as Bearer <your_token> for subsequent requests.
-
-4) CRUD Operations on Tasks:
-
-    Use the token to perform tasks operations.
+Set up an environment in Postman:
+Variable: baseUrl
+Value: http://localhost:5000/api
+Authentication:
+Register a user with POST {{baseUrl}}/auth/register.
+Log in with POST {{baseUrl}}/auth/login to get a token.
+Authorization:
+Copy the token from the login response.
+Add it to the Authorization header as:
+php
+Copy code
+Bearer <your_token>
+CRUD Operations on Tasks:
+Use the token to perform task operations (GET, POST, PUT, DELETE) by adding it to the Authorization header for each request.
